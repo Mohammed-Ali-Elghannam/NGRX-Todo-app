@@ -1,0 +1,86 @@
+import { inject, Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { TodoService } from "./todo.service";
+import { Store } from "@ngrx/store";
+import * as TodoActions from "./todo.actions"
+import * as AuthSelectors from "../Auth/auth.selectors"
+import { catchError, exhaustMap, filter, map, of, withLatestFrom } from "rxjs";
+
+
+@Injectable()
+export class TodoEffects {
+        private actions$ = inject(Actions);
+        private todoService = inject(TodoService);
+        private store = inject(Store);
+
+
+        loadTodos$ = createEffect(() =>
+                this.actions$.pipe(
+                        ofType(TodoActions.loadTodos),
+                        withLatestFrom(this.store.select(AuthSelectors.selectUserId)),
+                        filter(([action, userId]) => userId != null),
+                        exhaustMap(([action, userId]) =>
+                                this.todoService.getTodos(userId!).pipe(
+                                        map(todos =>
+                                                TodoActions.loadTodoSuccess({ todos })
+                                        ),
+                                        catchError(error => of(TodoActions.loadTodoFailure({ error })))
+                                )
+                        )
+                )
+        )
+
+
+        addTodo$ = createEffect(() =>
+                this.actions$.pipe(
+                        ofType(TodoActions.addTodo),
+                        withLatestFrom(this.store.select(AuthSelectors.selectUserId)),
+                        filter(([action, userId]) => userId != null),
+                        exhaustMap(([action, userId]) =>
+                                this.todoService.addTodo(action.task , userId!).pipe(
+                                        map(todo =>
+                                                TodoActions.addTodoSuccess({ todo })
+                                        ),
+                                        catchError(error => of(TodoActions.addTodoFailure({ error })))
+                                )
+                        )
+                )
+        )
+
+
+        updateTodo$ = createEffect(() =>
+                this.actions$.pipe(
+                        ofType(TodoActions.updateTodo),
+                        withLatestFrom(this.store.select(AuthSelectors.selectUserId)),
+                        filter(([action, userId]) => userId != null),
+                        exhaustMap(([action, userId]) =>
+                                this.todoService.updateTodo(action.todo , userId!).pipe(
+                                        map(todo =>
+                                                TodoActions.updateTodoSuccess({ todo })
+                                        ),
+                                        catchError(error => of(TodoActions.updateTodoFailure({ error })))
+                                )
+                        )
+                )
+        )
+
+
+        deleteTodo$ = createEffect(() =>
+                this.actions$.pipe(
+                        ofType(TodoActions.deleteTodo),
+                        withLatestFrom(this.store.select(AuthSelectors.selectUserId)),
+                        filter(([action, userId]) => userId != null),
+                        exhaustMap(([action, userId]) =>
+                                this.todoService.deleteTodo(action.todoId , userId!).pipe(
+                                        map(todo =>
+                                                TodoActions.deleteTodoSuccess({ todoId: action.todoId })
+                                        ),
+                                        catchError(error => of(TodoActions.deleteTodoFailure({ error })))
+                                )
+                        )
+                )
+        )
+
+
+
+}

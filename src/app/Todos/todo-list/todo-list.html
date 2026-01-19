@@ -1,0 +1,81 @@
+
+<div class="todo-container">
+  <div class="todo-card">
+    <h1 class="title">My Todo List</h1>
+
+    <form (ngSubmit)="addTodo()" class="todo-form">
+      <input
+        type="text"
+        name="newTask"
+        [(ngModel)]="newTask"
+        placeholder="What needs to be done?"
+        required
+        class="todo-input"
+      />
+      <button
+        [disabled]="!newTask.trim()"
+        type="submit"
+        class="add-btn"
+      >
+        Add Task
+      </button>
+    </form>
+
+    @if (isLoading$ | async) {
+      <div class="loading-section">
+        <div class="loader"></div>
+        <p>Loading Tasks...</p>
+      </div>
+    }
+
+    @if (!(isLoading$ | async) && (todos$ | async); as todos) {
+      <div class="todo-list">
+        @if (todos.length === 0) {
+          <p class="empty"> No tasks yet. Add your first one!</p>
+        }
+
+        @for (todo of todos; track $index) {
+          <div class="todo-item" [class.completed]="todo.completed">
+            @if (editingTodo?.id !== todo.id) {
+              <div class="todo-view">
+                <input
+                  type="checkbox"
+                  [checked]="todo.completed"
+                  (change)="toggleComplete(todo)"
+                  class="checkbox"
+                />
+                <span
+                  class="task"
+                  (click)="toggleComplete(todo)"
+                  [class.done]="todo.completed"
+                >
+                  {{ todo.task }}
+                </span>
+
+                <div class="todo-actions">
+                  <button (click)="startEdit(todo)" class="btn edit-btn">Edit</button>
+                  <button (click)="deleteTodo(todo.id)" class="btn delete-btn">Delete</button>
+                </div>
+              </div>
+            }
+
+            @if (editingTodo?.id === todo.id) {
+              <div class="todo-edit">
+                <input
+                  type="text"
+                  [(ngModel)]="updatedTask"
+                  name="updateTask"
+                  class="edit-input"
+                />
+                <div class="todo-actions">
+                  <button (click)="saveEdit()" class="btn save-btn">Save</button>
+                  <button (click)="cancelEdit()" class="btn cancel-btn">Cancel</button>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div> 

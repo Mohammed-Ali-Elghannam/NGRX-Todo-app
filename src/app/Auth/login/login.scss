@@ -1,0 +1,153 @@
+.auth-page {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85dvh;
+  //background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+  background-size: 300% 300%;
+  animation: gradientFlow 10s ease infinite;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  //color: #fff;
+  color: #01566d;
+  //color: #256dfd;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-5px);
+}
+
+.auth-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+  opacity: 0.85;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 1.2rem;
+  margin-right: 1.8rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.4rem;
+  //color: #256dfd;
+  color: #01566d;
+}
+
+input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 0.8rem;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  //color: #256dfd;
+  color: #01566d;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+input::placeholder {
+  //color: #256dfd;
+  color: #01566d;
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+button {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 0.8rem;
+  border: 1px solid #028db4 ;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  background: #fff;
+  color:  #028db4;
+  //background: linear-gradient(90deg, #007bff, #00c6ff);
+  transition: all 0.3s ease;
+}
+
+button:hover:enabled {
+  //transform: scale(1.03);
+  background: #028db4;
+  color: #fff;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.server-error {
+  background: rgba(255, 77, 77, 0.2);
+  border-left: 4px solid #ff4d4d;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  border-radius: 0.6rem;
+}
+
+.switch-form {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.switch-form a {
+  color: #01232c;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.switch-form a:hover {
+  text-decoration: underline;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media(max-width:450px) {
+  .auth-card {
+    padding: 1.5rem;
+  }
+
+  .auth-title {
+    font-size: 1.2rem;
+  }
+}

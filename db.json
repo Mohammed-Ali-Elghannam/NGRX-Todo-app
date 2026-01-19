@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": "user_1",
+      "name": "testUser",
+      "email": "test@test.com",
+      "password": "password123"
+    },
+    {
+      "id": "e486587d-ac29-41dc-9497-12b10d7b34a1",
+      "name": "mohammed",
+      "email": "elghannam@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "4c00e4f0-7567-44ec-b0fe-5aec2026834c",
+      "name": "saed ali",
+      "email": "saed2025@gmail.com",
+      "password": "Sa@123456"
+    }
+  ],
+  "todos": [
+    {
+      "id": "todo_1",
+      "userId": "user_1",
+      "title": "Sample Todo",
+      "completed": false,
+      "createdAt": "2024-06-01T12:00:00Z"
+    },
+    {
+      "id": "ba6eb039-48a6-49a7-8ae7-5e696698902f",
+      "userId": "e486587d-ac29-41dc-9497-12b10d7b34a1",
+      "task": "wwwwwqweqe",
+      "completed": true,
+      "createdAt": "2025-10-13T12:25:00.550Z"
+    },
+    {
+      "id": "28d6ca18-42b7-4c2d-9916-250183480955",
+      "userId": "e486587d-ac29-41dc-9497-12b10d7b34a1",
+      "task": "playing football",
+      "completed": false,
+      "createdAt": "2025-10-13T14:48:28.055Z"
+    },
+    {
+      "id": "73f57ef9-ff20-4ab4-b9eb-5b3adeec32b5",
+      "userId": "e486587d-ac29-41dc-9497-12b10d7b34a1",
+      "task": "qwwwqweqew",
+      "completed": false,
+      "createdAt": "2026-01-18T20:23:19.233Z"
+    }
+  ]
+}
