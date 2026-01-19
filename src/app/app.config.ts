@@ -28,29 +28,6 @@ function localStorageSyncReducer(reducer : ActionReducer<any>) : ActionReducer<a
 
 const metaReducers = [localStorageSyncReducer];
 
-// const authStateKeyToSync = [fromAuth.authFeatureKey];
-
-// function authLocalStorageSyncReducer(reducer: ActionReducer<any>):ActionReducer<any>{
-//   return localStorageSync({
-//     keys:authStateKeyToSync,
-//     rehydrate:true,
-//     storage:window.localStorage,
-//     removeOnUndefined:true
-//   })(reducer)
-// };
-
-// const todosStateKeyToSync = [fromTodos.todoFeatureKey];
-// function todosLocalStorageSyncReducer(reducer: ActionReducer<any>):ActionReducer<any>{
-//   return localStorageSync({
-//     keys:todosStateKeyToSync,
-//     rehydrate:true,
-//     storage:window.localStorage,
-//     removeOnUndefined:true
-//   })(reducer)
-// };
-
-// const metaReducers = [authLocalStorageSyncReducer,todosLocalStorageSyncReducer];
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
